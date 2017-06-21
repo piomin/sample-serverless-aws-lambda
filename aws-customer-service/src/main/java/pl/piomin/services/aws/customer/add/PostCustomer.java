@@ -1,4 +1,4 @@
-package pl.piomin.services.aws.account.add;
+package pl.piomin.services.aws.customer.add;
 
 import com.amazonaws.regions.Region;
 import com.amazonaws.regions.Regions;
@@ -8,23 +8,23 @@ import com.amazonaws.services.lambda.runtime.Context;
 import com.amazonaws.services.lambda.runtime.LambdaLogger;
 import com.amazonaws.services.lambda.runtime.RequestHandler;
 
-import pl.piomin.services.aws.account.model.Account;
+import pl.piomin.services.aws.customer.model.Customer;
 
-public class PostAccount implements RequestHandler<Account, Account> {
+public class PostCustomer implements RequestHandler<Customer, Customer> {
 
 	private DynamoDBMapper mapper;
 	
-	public PostAccount() {
+	public PostCustomer() {
 		AmazonDynamoDBClient client = new AmazonDynamoDBClient();
 		client.setRegion(Region.getRegion(Regions.US_EAST_1));
 		mapper = new DynamoDBMapper(client);
 	}
 	
 	@Override
-	public Account handleRequest(Account a, Context ctx) {
+	public Customer handleRequest(Customer c, Context ctx) {
 		LambdaLogger logger = ctx.getLogger();
-		mapper.save(a);		
-		Account r = a;
+		mapper.save(c);		
+		Customer r = c;
 		logger.log("Account: " + r.getId());
 		return r;
 	}
