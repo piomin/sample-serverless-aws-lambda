@@ -14,8 +14,8 @@
 				<artifactId>lambda-maven-plugin</artifactId>
 				<version>2.2.1</version>
 				<configuration>
-					<accessKey>AKIAJNMX2USCCCA3ROVQ</accessKey>
-					<secretKey>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</secretKey>
+					<accessKey>${aws.accessKey}</accessKey>
+					<secretKey>${aws.secretKey}</secretKey>
 					<functionCode>${project.build.directory}/${project.build.finalName}.jar</functionCode>
 					<version>${project.version}</version>
 					<lambdaRoleArn>arn:aws:iam::436521214155:role/lambda_basic_execution</lambdaRoleArn>
