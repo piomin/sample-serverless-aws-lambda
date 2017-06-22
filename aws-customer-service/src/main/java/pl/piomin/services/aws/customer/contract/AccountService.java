@@ -8,6 +8,6 @@ import pl.piomin.services.aws.customer.model.Account;
 
 public interface AccountService {
 
-	@LambdaFunction(functionName = "GetAccountByCustomerIdFunction")
+	@LambdaFunction(functionName = "GetAccountsByCustomerIdFunction")
 	List<Account> getAccountsByCustomerId(Account account);
 }
