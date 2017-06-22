@@ -11,12 +11,28 @@
 	<build>
 		<plugins>
 			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-shade-plugin</artifactId>
+				<version>2.3</version>
+				<configuration>
+					<createDependencyReducedPom>false</createDependencyReducedPom>
+				</configuration>
+				<executions>
+					<execution>
+						<phase>package</phase>
+						<goals>
+							<goal>shade</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
 				<groupId>com.github.seanroy</groupId>
 				<artifactId>lambda-maven-plugin</artifactId>
 				<version>2.2.1</version>
 				<configuration>
-					<accessKey>AKIAJNMX2USCCCA3ROVQ</accessKey>
-					<secretKey>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</secretKey>
+					<accessKey>${aws.accessKey}</accessKey>
+					<secretKey>${aws.secretKey}</secretKey>
 					<functionCode>${project.build.directory}/${project.build.finalName}.jar</functionCode>
 					<version>${project.version}</version>
 					<lambdaRoleArn>arn:aws:iam::436521214155:role/lambda_basic_execution</lambdaRoleArn>
@@ -25,30 +41,30 @@
 					<forceUpdate>true</forceUpdate>
 					<lambdaFunctionsJSON>
 						[
-							{
-								"functionName": "PostAccountFunction",
-								"description": "POST account",
-								"handler": "pl.piomin.services.aws.account.add.PostAccount",
-								"timeout": 30,
-								"memorySize": 256,
-								"keepAlive": 10
-							},
-							{
-								"functionName": "GetAccountFunction",
-								"description": "GET account",
-								"handler": "pl.piomin.services.aws.account.find.GetAccount",
-								"timeout": 30,
-								"memorySize": 256,
-								"keepAlive": 30
-							},
-							{
-								"functionName": "GetAccountsByCustomerIdFunction",
-								"description": "GET accountsCustomerId",
-								"handler": "pl.piomin.services.aws.account.find.GetAccountsByCustomerId",
-								"timeout": 30,
-								"memorySize": 256,
-								"keepAlive": 30
-							}
+						{
+						"functionName": "PostAccountFunction",
+						"description": "POST account",
+						"handler": "pl.piomin.services.aws.account.add.PostAccount",
+						"timeout": 30,
+						"memorySize": 256,
+						"keepAlive": 10
+						},
+						{
+						"functionName": "GetAccountFunction",
+						"description": "GET account",
+						"handler": "pl.piomin.services.aws.account.find.GetAccount",
+						"timeout": 30,
+						"memorySize": 256,
+						"keepAlive": 30
+						},
+						{
+						"functionName": "GetAccountsByCustomerIdFunction",
+						"description": "GET accountsCustomerId",
+						"handler": "pl.piomin.services.aws.account.find.GetAccountsByCustomerId",
+						"timeout": 30,
+						"memorySize": 256,
+						"keepAlive": 30
+						}
 						]
 					</lambdaFunctionsJSON>
 				</configuration>
