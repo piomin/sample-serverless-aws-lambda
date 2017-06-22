@@ -37,6 +37,7 @@ public class GetAccountsByCustomerId implements RequestHandler<Account, List<Acc
 		DynamoDBQueryExpression<Account> qe = new DynamoDBQueryExpression<Account>()
 				.withIndexName("Customer-Index")
 				.withKeyConditionExpression("customerId = :customerId")
+				.withConsistentRead(false)
 				.withExpressionAttributeValues(m);
 
 		return mapper.query(Account.class, qe);

@@ -14,13 +14,13 @@ public class Account implements Serializable {
 	private static final long serialVersionUID = 8331074361667921244L;
 	private String id;
 	private String number;
-	private Integer customerId;
+	private String customerId;
 
 	public Account() {
 		
 	}
 	
-	public Account(String id, String number, Integer customerId) {
+	public Account(String id, String number, String customerId) {
 		this.id = id;
 		this.number = number;
 		this.customerId = customerId;
@@ -46,11 +46,11 @@ public class Account implements Serializable {
 	}
 
 	@DynamoDBIndexHashKey(attributeName = "customerId", globalSecondaryIndexName = "Customer-Index")
-	public Integer getCustomerId() {
+	public String getCustomerId() {
 		return customerId;
 	}
 
-	public void setCustomerId(Integer customerId) {
+	public void setCustomerId(String customerId) {
 		this.customerId = customerId;
 	}
 
