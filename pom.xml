@@ -52,6 +52,7 @@
 	<modules>
 		<module>aws-account-service</module>
 		<module>aws-customer-service</module>
+		<module>aws-order-service</module>
 	</modules>
 
 </project>
