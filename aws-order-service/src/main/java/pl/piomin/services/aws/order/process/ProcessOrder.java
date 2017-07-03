@@ -33,7 +33,7 @@ public class ProcessOrder implements RequestHandler<DynamodbEvent, String> {
 		
 		for (DynamodbStreamRecord record : records) {
 			try {
-				logger.log(String.format("DynamoEvent: %s", record.getEventName(), record.getDynamodb().getNewImage().values().toString()));
+				logger.log(String.format("DynamoEvent: %s, %s", record.getEventName(), record.getDynamodb().getNewImage().values().toString()));
 				Map<String, AttributeValue> m = record.getDynamodb().getNewImage();
 				OrderMessage message = new OrderMessage("", m.get("id").getS(), m.get("accountId").getS(), Integer.parseInt(m.get("amount").getN()));
 				String msg = jsonMapper.writeValueAsString(message);
