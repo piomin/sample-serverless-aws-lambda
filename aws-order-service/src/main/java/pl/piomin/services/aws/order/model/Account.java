@@ -1,4 +1,4 @@
-package pl.piomin.services.aws.account.model;
+package pl.piomin.services.aws.order.model;
 
 import java.io.Serializable;
 

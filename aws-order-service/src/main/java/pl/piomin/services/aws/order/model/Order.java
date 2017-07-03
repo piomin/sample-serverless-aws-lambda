@@ -16,7 +16,7 @@ public class Order implements Serializable {
 	private static final long serialVersionUID = 510923895974229721L;
 	
 	private String id;
-	private String organizationId;
+	private String accountId;
 	private int amount;
 	private OrderType type;
 
@@ -30,13 +30,13 @@ public class Order implements Serializable {
 		this.id = id;
 	}
 
-	@DynamoDBAttribute(attributeName = "organizationId")
-	public String getOrganizationId() {
-		return organizationId;
+	@DynamoDBAttribute(attributeName = "accountId")
+	public String getAccountId() {
+		return accountId;
 	}
 
-	public void setOrganizationId(String organizationId) {
-		this.organizationId = organizationId;
+	public void setAccountId(String accountId) {
+		this.accountId = accountId;
 	}
 
 	@DynamoDBAttribute(attributeName = "amount")

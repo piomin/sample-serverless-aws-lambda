@@ -25,7 +25,7 @@ public class PostOrder implements RequestHandler<Order, Order> {
 		LambdaLogger logger = ctx.getLogger();
 		mapper.save(o);		
 		Order r = o;
-		logger.log("Order: " + r.getId());
+		logger.log("Order saved: " + r.getId());
 		return r;
 	}
 	
