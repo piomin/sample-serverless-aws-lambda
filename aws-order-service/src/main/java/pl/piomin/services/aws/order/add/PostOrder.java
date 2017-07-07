@@ -1,7 +1,5 @@
 package pl.piomin.services.aws.order.add;
 
-import com.amazonaws.regions.Region;
-import com.amazonaws.regions.Regions;
 import com.amazonaws.services.dynamodbv2.AmazonDynamoDBClient;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBMapper;
 import com.amazonaws.services.lambda.runtime.Context;
@@ -16,7 +14,6 @@ public class PostOrder implements RequestHandler<Order, Order> {
 	
 	public PostOrder() {
 		AmazonDynamoDBClient client = new AmazonDynamoDBClient();
-		client.setRegion(Region.getRegion(Regions.US_EAST_1));
 		mapper = new DynamoDBMapper(client);
 	}
 	
