@@ -39,7 +39,7 @@ public class NumberOfOrdersHandler implements RequestHandler<SNSEvent, Object> {
 		final List<SNSRecord> records = event.getRecords();
 		
 		for (SNSRecord record : records) {
-			logger.log(String.format("SNSEvent: %s", record.getSNS().getMessageId()));
+			logger.log(String.format("SNSEvent: %s, %s", record.getSNS().getMessageId(), record.getSNS().getMessage()));
 			try {
 				final Order o = jsonMapper.readValue(record.getSNS().getMessage(), Order.class);
 				Map<String, AttributeValue> m = new HashMap<>();

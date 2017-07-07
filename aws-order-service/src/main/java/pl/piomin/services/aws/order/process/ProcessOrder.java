@@ -16,6 +16,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import pl.piomin.services.aws.order.message.OrderMessage;
+import pl.piomin.services.aws.order.model.Order;
 
 public class ProcessOrder implements RequestHandler<DynamodbEvent, String> {
 
@@ -35,10 +36,10 @@ public class ProcessOrder implements RequestHandler<DynamodbEvent, String> {
 			try {
 				logger.log(String.format("DynamoEvent: %s, %s", record.getEventName(), record.getDynamodb().getNewImage().values().toString()));
 				Map<String, AttributeValue> m = record.getDynamodb().getNewImage();
-				OrderMessage message = new OrderMessage("", m.get("id").getS(), m.get("accountId").getS(), Integer.parseInt(m.get("amount").getN()));
-				String msg = jsonMapper.writeValueAsString(message);
+				Order order = new Order(m.get("id").getS(), m.get("accountId").getS(), Integer.parseInt(m.get("amount").getN()));
+				String msg = jsonMapper.writeValueAsString(order);
 				logger.log(String.format("SNS message: %s", msg));
-				PublishRequest req = new PublishRequest("arn:aws:sns:us-east-1:658226682183:order", msg, "Order");
+				PublishRequest req = new PublishRequest("arn:aws:sns:us-east-1:658226682183:order", jsonMapper.writeValueAsString(new OrderMessage(msg)), "Order");
 				req.setMessageStructure("json");
 				PublishResult res = client.publish(req);
 				logger.log(String.format("SNS message sent: %s", res.getMessageId()));

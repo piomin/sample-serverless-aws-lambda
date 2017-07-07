@@ -5,53 +5,22 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 public class OrderMessage {
 
 	@JsonProperty("default")
-	private String defaultMsg;
-	private String orderId;
-	private String accountId;
-	private int amount;
+	private String defaultVal;
 
 	public OrderMessage() {
-
+	
+	}
+	
+	public OrderMessage(String defaultVal) {
+		this.defaultVal = defaultVal;
 	}
 
-	public OrderMessage(String defaultMsg, String orderId, String accountId, int amount) {
-		super();
-		this.defaultMsg = defaultMsg;
-		this.orderId = orderId;
-		this.accountId = accountId;
-		this.amount = amount;
+	public String getDefaultVal() {
+		return defaultVal;
 	}
 
-	public String getDefaultMsg() {
-		return defaultMsg;
+	public void setDefaultVal(String defaultVal) {
+		this.defaultVal = defaultVal;
 	}
-
-	public void setDefaultMsg(String defaultMsg) {
-		this.defaultMsg = defaultMsg;
-	}
-
-	public String getOrderId() {
-		return orderId;
-	}
-
-	public void setOrderId(String orderId) {
-		this.orderId = orderId;
-	}
-
-	public String getAccountId() {
-		return accountId;
-	}
-
-	public void setAccountId(String accountId) {
-		this.accountId = accountId;
-	}
-
-	public int getAmount() {
-		return amount;
-	}
-
-	public void setAmount(int amount) {
-		this.amount = amount;
-	}
-
+	
 }

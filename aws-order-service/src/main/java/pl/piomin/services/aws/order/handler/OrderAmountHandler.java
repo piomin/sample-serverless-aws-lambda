@@ -35,7 +35,7 @@ public class OrderAmountHandler implements RequestHandler<SNSEvent, Object> {
 		final List<SNSRecord> records = event.getRecords();
 		
 		for (SNSRecord record : records) {
-			logger.log(String.format("SNSEvent: %s", record.getSNS().getMessageId()));
+			logger.log(String.format("SNSEvent: %s, %s", record.getSNS().getMessageId(), record.getSNS().getMessage()));
 			try {
 				Order o = jsonMapper.readValue(record.getSNS().getMessage(), Order.class);
 				if (o.getAmount() >= AMOUNT_THRESHOLD) {
